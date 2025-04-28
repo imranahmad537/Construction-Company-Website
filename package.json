@@ -1,7 +1,6 @@
 {
   "name": "construction-company-site-template",
   "version": "1.0.0",
-  
   "description": "> A simple website template with some interesting features created with HTML , CSS and JavaScript for learning purposes and to practice (Advanced DOM and Events) with JavaScript.",
   "main": "index.js",
   "scripts": {

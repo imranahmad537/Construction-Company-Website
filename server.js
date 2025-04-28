@@ -4,8 +4,11 @@ const app = express();
 const port = 3000;
 
 
+app.set('view engine', 'ejs');
+
 app.get('/', (req, res) => {
-    res.send('Hello Express');
+    let name = "Imran Ahmad";
+    res.render("index", {name: name});
 })
 
 app.use('/about', about )
