@@ -1,9 +1,11 @@
 {
   "name": "construction-company-site-template",
   "version": "1.0.0",
+  
   "description": "> A simple website template with some interesting features created with HTML , CSS and JavaScript for learning purposes and to practice (Advanced DOM and Events) with JavaScript.",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,6 +16,7 @@
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "mongoose": "^8.14.0"
+    "mongoose": "^8.14.0",
+    "nodemon": "^3.1.10"
   }
 }
