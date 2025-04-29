@@ -1,3 +1,7 @@
-Updating file in Mongo db
-1. fs.appendFile()
-1. fs.writeFile()
+// Updating file in Mongo db
+// 1. fs.appendFile()
+// 1. fs.writeFile()
+
+// db.course.updateOne({price:0}, {$set:{price:100}});
+
+// it will set the price toString 100 for all documents where price is 0.
