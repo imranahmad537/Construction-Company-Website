@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="css/animate.compat.css" rel="stylesheet" type="text/css">
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
-    <script defer src="js/scripts.js"></script>
+    <link href="./css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="./css/animate.compat.css" rel="stylesheet" type="text/css">
+    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./css/bootstrap.min.css.map" rel="stylesheet" type="text/css">
+    <script defer src="./js/scripts.js"></script>
     <title>http://alramalaldaakina.com</title>
 </head>
 
@@ -173,7 +173,36 @@
             </div>
         </div>
     </section>
+
     <section id="sec-5">
+        <div class="container">
+            <h1>Customer Reviews</h1>
+            <p>Hear what our clients have to say...</p>
+            <div class="cont">
+                <% reviews.forEach(review => { %>
+                    <article class="quoteblock">
+                        <div class="quotetxt arrow">
+                            <p><img src="Images/blockquote1.png" alt="quote"></p>
+                            <p><%= review.review %></p>
+                        </div>
+                        <figure>
+                            <img class="customer" src="<%= review.image %>" alt="customer">
+                            <figcaption><%= review.name %></figcaption>
+                        </figure>
+                    </article>
+                <% }) %>
+            </div>
+    
+            <div class="pagination">
+                <% for(let i = 1; i <= totalPages; i++) { %>
+                    <a href="/reviews?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+                <% } %>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- <section id="sec-5">
         <div class="container">
             <h1>customer reviews</h1>
             <p>Hear what our clients have to say about working with us — real experiences, real results, and lasting satisfaction.</p>
@@ -225,7 +254,7 @@
                 </form>
             </div>
         </div>
-    </section>
+    </section> -->
     <section id="sec-6">
         <div class="container">
             <div class="about">

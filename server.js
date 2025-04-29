@@ -1,39 +1,50 @@
 const express = require('express');
-const about = require('./routes/about.js');
+const reviewRoutes = require('./routes/reviewRoutes.js'); 
 require('dotenv').config();
 const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
-
-
-
-mongoose.connect(process.env.MONGODB_URI).then(() => {
-    console.log('MongoDB connected successfully');
-}).catch((err) => {
-    console.log('MongoDB connection error:', err);
-});
-const User = require('./models/userModel.js');
-const { name } = require('ejs');
-
- async function insert(){
-    await User.create({
-        name:"imran ahmad",
-        review:"this is a review",
-        image:"https://images.unsplash.com/photo-1677631231234-1234567890?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fGltcmFuJTIwYWhtYWQlMjBpbWFnZXxlbnwwfHx8fDE2ODQ1NTY5NzE&ixlib=rb-4.0.3&q=80&w=400"
+// MongoDB connection
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+        console.log('MongoDB connected successfully');
+    })
+    .catch((err) => {
+        console.log('MongoDB connection error:', err);
     });
-}
-insert();
 
+// Import the User model (Review Schema)
+const User = require('./models/reviewSchema.js');
+
+// Set the view engine to ejs
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
+// Define the home route with pagination
+app.get('/', async (req, res) => {
     let name = "Imran Ahmad";
-    res.render("index", {name: name});
-})
+    const perPage = 6; // Number of reviews per page
+    const page = req.query.page || 1; // Default to page 1 if not provided
 
-app.use('/about', about )
+    // Fetch reviews with pagination
+    const reviews = await User.find()
+        .skip((perPage * page) - perPage) // Skip the reviews of previous pages
+        .limit(perPage); // Limit the number of reviews to `perPage`
 
+    // Get the total count of reviews for pagination calculation
+    const count = await User.countDocuments();
+
+    // Calculate total pages
+    const totalPages = Math.ceil(count / perPage);
+
+    // Pass reviews, pagination data to the view
+    res.render('index', { name: name, reviews: reviews, currentPage: page, totalPages: totalPages });
+});
+
+// Use the reviews route for `/reviews` endpoint
+app.use('/reviews', reviewRoutes);
+
+// Start the server
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
