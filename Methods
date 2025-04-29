@@ -1,0 +1,3 @@
+Updating file in Mongo db
+1. fs.appendFile()
+1. fs.writeFile()
