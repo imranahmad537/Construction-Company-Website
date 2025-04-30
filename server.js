@@ -2,6 +2,7 @@ const express = require('express');
 const reviewRoutes = require('./routes/reviewRoutes.js'); 
 require('dotenv').config();
 const mongoose = require('mongoose');
+const path = require('path');
 const app = express();
 const port = 3000;
 
@@ -17,13 +18,17 @@ mongoose.connect(process.env.MONGODB_URI)
 // Import the User model (Review Schema)
 const User = require('./models/reviewSchema.js');
 
+
+app.use(express.static(path.join(__dirname, 'public'))); // <--- This line serves static files
+
+
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 
 // Define the home route with pagination
 app.get('/', async (req, res) => {
     let name = "Imran Ahmad";
-    const perPage = 6; // Number of reviews per page
+    const perPage = 3; // Number of reviews per page
     const page = req.query.page || 1; // Default to page 1 if not provided
 
     // Fetch reviews with pagination

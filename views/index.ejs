@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="./css/animate.compat.css" rel="stylesheet" type="text/css">
-    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="./css/bootstrap.min.css.map" rel="stylesheet" type="text/css">
-    <script defer src="./js/scripts.js"></script>
+    <link href="css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.compat.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script defer src="js/scripts.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS + dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <title>http://alramalaldaakina.com</title>
 </head>
 
@@ -19,7 +27,9 @@
                 <p>0543691425 / 0560406352</p>
                 <p>info@alramalaldaakina.com</p>
                 <p>Sat-Thu 07:30-04:30</p>
-                <p><%= name%></p>
+                <p>
+                    <%= name%>
+                </p>
                 <div class="social">
                     <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -32,44 +42,95 @@
         </header>
         <header>
             <div class="hide" id="searchBar">
-                <input type="search" name="searchBox" id="searchBox" placeholder="Type your search here..    Press [Esc] to exist">
+                <input type="search" name="searchBox" id="searchBox"
+                    placeholder="Type your search here..    Press [Esc] to exist">
             </div>
-            <div class="container">  
+            <div class="container">
                 <h1>
-                    <span>CONST</span>RUCTION 
+                    <span>CONST</span>RUCTION
                     <p>Strong Foundations, Stronger Futures</p>
                 </h1>
                 <label for="menu"><i class="fas fa-bars"></i></label>
                 <input type="checkbox" id="menu">
                 <nav>
-                    <a href="#">Home</a>
-                    <a href="#">Page</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Portofolio</a>
-                    <a href="#">Components</a>
-                    <a href="#">Contact</a>
+                    <b><a href="#">Home</a></b>
+                    <b><a href="#">Page</a></b>
+                    <b><a href="#">Blog</a></b>
+                    <b><a href="#">Portofolio</a></b>
+                    <b><a href="#">Components</a></b>
+                    <b><a href="#">Contact</a></b>
+
+
+
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+                        Leave a Review
+                      </button>
+                      
+                    <!-- Modal -->
+                    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog"
+                        aria-labelledby="reviewModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form action="/submit-review" method="POST" class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="reviewModalLabel">Submit Your Review</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="reviewerName">Name:</label>
+                                        <input type="text" name="name" id="reviewerName" class="form-control"
+                                            required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reviewText">Review:</label>
+                                        <textarea name="review" id="reviewText" class="form-control"
+                                            placeholder="Write your review..." required></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">Submit Review</button>
+                                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <i class="fa-solid fa-magnifying-glass" id="search"></i>
                 </nav>
             </div>
         </header>
         <article>
-        <div class="container">
-            <h1> We are Certified Engineers</h1>
-            <h2>Construction services<br>
-            <span>Creative AND professional</span></h2>
-            <p>Al Ramal Al Daakina is one of Saudi progressive construction companies with over years of invaluable experience and expertise in construction and development of civil, steel fabrication and land development works. We carry out all aspects of construction and development projects, from planning to ﬁnish.</p>
-            <a href="#">Show More</a>
-            <a href="#">view project</a>
-        </div>
+            <div class="container">
+                <h1> We are Certified Engineers</h1>
+                <h2>Construction services<br>
+                    <span>Creative AND professional</span>
+                </h2>
+                <p>Al Ramal Al Daakina is one of Saudi progressive construction companies with over years of invaluable
+                    experience and expertise in construction and development of civil, steel fabrication and land
+                    development works. We carry out all aspects of construction and development projects, from planning
+                    to ﬁnish.</p>
+                <a href="#">Show More</a>
+                <a href="#">view project</a>
+            </div>
         </article>
     </section>
+    <!-- modal -->
+
+    <!-- modal -->
     <section id="sec-1">
         <div class="container">
             <article>
                 <h1>Welcome to our company</h1>
                 <h2>Core Mission Core Values & QHSE </h2>
-                
-                <p> <h6 style="text-decoration: underline; font-size: larger;">Vision</h6> At AL RAMAL AL DAAKINA, our vision is to foster an exceptional internal culture and uphold our reputation as a trusted leader in construction. We are committed to being the preferred employer, a dependable contractor, and a proactive community partner. Our focus is on building a legacy of excellence, leadership, value, quality, professionalism, and a dedication to corporate social responsibility.</p>
+
+                <p>
+                <h6 style="text-decoration: underline; font-size: larger;">Vision</h6> At AL RAMAL AL DAAKINA, our
+                vision is to foster an exceptional internal culture and uphold our reputation as a trusted leader in
+                construction. We are committed to being the preferred employer, a dependable contractor, and a proactive
+                community partner. Our focus is on building a legacy of excellence, leadership, value, quality,
+                professionalism, and a dedication to corporate social responsibility.</p>
                 <a href="#">Show More</a>
             </article>
             <aside><img src="Images/img1.png" alt="man"></aside>
@@ -85,14 +146,16 @@
                     <div><img src="Images/ico1.png" alt=""></div>
                     <div class="cont">
                         <h2>TRUST & RESPECT</h2>
-                        <p>At AL RAMAL AL DAAKINA, we build trust through accountability—in every task and interaction.</p>
+                        <p>At AL RAMAL AL DAAKINA, we build trust through accountability—in every task and interaction.
+                        </p>
                     </div>
                 </figure>
                 <figure>
                     <div><img src="Images/ico2.png" alt=""></div>
                     <div class="cont">
                         <h2>TEAM WORK</h2>
-                        <p>Our shared culture and experience bring us together. Every team member plays a role in our success..</p>
+                        <p>Our shared culture and experience bring us together. Every team member plays a role in our
+                            success..</p>
                     </div>
                 </figure>
                 <figure>
@@ -124,8 +187,13 @@
                         <h5 class="caption">Construction Management</h5>
                     </div>
                     <div class="card-body px-0 pt-4">
-                        <p>Our construction management service ensures your project runs smoothly from start to finish. We coordinate every detail, including scheduling, budgeting, and on-site supervision, so you don’t have to worry about a thing. Our experienced team works closely with contractors and suppliers to maintain timelines, ensure quality, and manage risks. With a focus on safety, communication, and efficiency, we turn complex construction into a clear, manageable process. Trust us to bring your vision to life with precision and professionalism.</p>
-                    <a href="#">Show More</a>
+                        <p>Our construction management service ensures your project runs smoothly from start to finish.
+                            We coordinate every detail, including scheduling, budgeting, and on-site supervision, so you
+                            don’t have to worry about a thing. Our experienced team works closely with contractors and
+                            suppliers to maintain timelines, ensure quality, and manage risks. With a focus on safety,
+                            communication, and efficiency, we turn complex construction into a clear, manageable
+                            process. Trust us to bring your vision to life with precision and professionalism.</p>
+                        <a href="#">Show More</a>
                     </div>
                 </div>
                 <div class="card border-0">
@@ -134,8 +202,14 @@
                         <h5 class="caption">Renovation</h5>
                     </div>
                     <div class="card-body px-0 pt-4">
-                        <p>Our renovation services are designed to upgrade and modernize your space while respecting its original character. From minor remodeling to full-scale transformations, we approach every project with a fresh perspective and skilled craftsmanship. We collaborate with you to understand your goals and design a plan that fits your style, budget, and timeline. Whether it's a home, office, or commercial property, we handle every step—from demolition to final finishing—with care and attention. Let us revitalize your space into something extraordinary.</p>
-                    <a href="#">Show More</a>
+                        <p>Our renovation services are designed to upgrade and modernize your space while respecting its
+                            original character. From minor remodeling to full-scale transformations, we approach every
+                            project with a fresh perspective and skilled craftsmanship. We collaborate with you to
+                            understand your goals and design a plan that fits your style, budget, and timeline. Whether
+                            it's a home, office, or commercial property, we handle every step—from demolition to final
+                            finishing—with care and attention. Let us revitalize your space into something
+                            extraordinary.</p>
+                        <a href="#">Show More</a>
                     </div>
                 </div>
                 <div class="card border-0">
@@ -144,8 +218,14 @@
                         <h5 class="caption">Architectuure</h5>
                     </div>
                     <div class="card-body px-0 pt-4">
-                        <p>Our architectural services lay the foundation for spaces that are both functional and visually stunning. We believe good design should reflect your personality, purpose, and environment. From concept development to detailed planning, we balance creativity with practicality to deliver innovative and buildable solutions. Our architects work alongside you to translate your ideas into designs that inspire and endure. Whether residential, commercial, or industrial, we shape spaces that stand the test of time with elegance and purpose.</p>
-                    <a href="#">Show More</a>
+                        <p>Our architectural services lay the foundation for spaces that are both functional and
+                            visually stunning. We believe good design should reflect your personality, purpose, and
+                            environment. From concept development to detailed planning, we balance creativity with
+                            practicality to deliver innovative and buildable solutions. Our architects work alongside
+                            you to translate your ideas into designs that inspire and endure. Whether residential,
+                            commercial, or industrial, we shape spaces that stand the test of time with elegance and
+                            purpose.</p>
+                        <a href="#">Show More</a>
                     </div>
                 </div>
             </div>
@@ -154,7 +234,8 @@
     <section id="sec-4">
         <div class="container">
             <h1>made with love</h1>
-            <p>At AL RAMAL AL DAAKINA, we craft strong foundations with passion and precision, creating lasting futures—all made with love.</p>
+            <p>At AL RAMAL AL DAAKINA, we craft strong foundations with passion and precision, creating lasting
+                futures—all made with love.</p>
             <div class="filter">
                 <a href="#">Show all</a>
                 <a href="#">Buildings</a>
@@ -169,7 +250,7 @@
                     <img src="Images/gallery2.jpg" alt="pic" class="wow animated flipInX delay-1s slower">
                     <img src="Images/gallery4.jpg" alt="pic" class="wow animated flipInX delay-2s">
                     <img src="Images/gallery5.jpg" alt="pic" class="wow animated flipInX delay-2s slower">
-                </aside>    
+                </aside>
             </div>
         </div>
     </section>
@@ -179,28 +260,50 @@
             <h1>Customer Reviews</h1>
             <p>Hear what our clients have to say...</p>
             <div class="cont">
-                <% reviews.forEach(review => { %>
+                <% reviews.forEach(review=> { %>
                     <article class="quoteblock">
-                        <div class="quotetxt arrow">
-                            <p><img src="Images/blockquote1.png" alt="quote"></p>
-                            <p><%= review.review %></p>
-                        </div>
                         <figure>
                             <img class="customer" src="<%= review.image %>" alt="customer">
-                            <figcaption><%= review.name %></figcaption>
+                            <figcaption>
+                                <%= review.name %>
+                            </figcaption>
                         </figure>
+                        <div class="quotetxt arrow">
+                            <p><img src="Images/blockquote1.png" alt="quote"></p>
+                            <p>
+                                <%= review.review %>
+                            </p>
+                        </div>
+
                     </article>
-                <% }) %>
+                    <% }) %>
             </div>
-    
+
             <div class="pagination">
-                <% for(let i = 1; i <= totalPages; i++) { %>
-                    <a href="/reviews?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
-                <% } %>
+                <% for(let i=1; i <=totalPages; i++) { %>
+                    <a href="/reviews?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>">
+                        <%= i %>
+                    </a>
+                    <% } %>
+            </div>
+        </div>
+        <div class="contactUs">
+            <div class="container">
+                <aside>
+                    <h1>do you have any questions?</h1>
+                    <h2>feel free to contact us!</h2>
+                </aside>
+                <form id="form" action="/" method="">
+                    <input type="text" name="name" id="" placeholder="Name" required>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                    <input type="text" name="message" id="" placeholder="Message" required>
+                    <input type="submit" value="submit" id="submit">
+                    <p id="msg"></p>
+                </form>
             </div>
         </div>
     </section>
-    
+
 
     <!-- <section id="sec-5">
         <div class="container">
@@ -260,13 +363,15 @@
             <div class="about">
                 <h1>About Company</h1>
                 <h2>
-                    CONSTRUCTION 
+                    CONSTRUCTION
                     <p>Strong Foundations, Stronger Futures</p>
                 </h2>
-                <p>At AL RAMAL AL DAAKINA, we turn visions into reality with precision, passion, and purpose. From civil works to steel fabrication, our strong foundations pave the way for stronger futures across Saudi Arabia</p>
+                <p>At AL RAMAL AL DAAKINA, we turn visions into reality with precision, passion, and purpose. From civil
+                    works to steel fabrication, our strong foundations pave the way for stronger futures across Saudi
+                    Arabia</p>
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>  
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#"><i class="fab fa-google-plus-g"></i></a>
                 <a href="#"><i class="fab fa-youtube-square"></i></a>
             </div>
@@ -308,6 +413,6 @@
     <script> new WOW().init();</script>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
 <p>0543691425 / </p>
-            
