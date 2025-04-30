@@ -1,47 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Review = require('../models/reviewSchema');
+const reviewController = require('../Controller/reviewController.js'); // Adjust the path as necessary
 
-// Route to fetch reviews with pagination
-router.get('/', async (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = 3;
-
-    try {
-        const reviews = await Review.find()
-            .skip((page - 1) * limit)
-            .limit(limit);
-
-        const total = await Review.countDocuments();
-
-        res.render('reviews', {
-            reviews,
-            currentPage: page,
-            totalPages: Math.ceil(total / limit)
-        });
-    } catch (err) {
-        res.status(500).send('Server Error');
-    }
-});
+router.get('/', reviewController.getReviews); // Fetch all reviews
+router.post('/submit', reviewController.submitReview); // Submit a new review
 
 module.exports = router;
-
-
-// const express = require('express');
-// const router = express.Router();
-// const reviewController = require('../controllers/reviewController');
-
-// router.get('/', reviewController.getAllReviews);
-
-// module.exports = router;
-
-
-
-
-// // const express = require('express');
-// // const about = express.Router();
-
-// // about.get('/', (req, res) => {
-// //     res.send('About us');
-// // })
-// // module.exports = about;
+// This route handles the submission of reviews and fetching all reviews.

@@ -1,6 +1,10 @@
 const express = require('express');
-const reviewRoutes = require('./routes/reviewRoutes.js'); 
+const reviewRoutes = require('./routes/reviewRoutes.js');
+const Review = require('./models/reviewSchema.js'); // Import the Review model
+const bodyParser = require('body-parser'); // Import body-parser to parse form data 
+
 require('dotenv').config();
+const router = express.Router();
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
@@ -15,8 +19,11 @@ mongoose.connect(process.env.MONGODB_URI)
         console.log('MongoDB connection error:', err);
     });
 
-// Import the User model (Review Schema)
-const User = require('./models/reviewSchema.js');
+    
+    app.use(express.urlencoded({ extended: true })); // For handling form submissions
+
+app.use(bodyParser.urlencoded({ extended: true })); // This is essential to parse form data
+
 
 
 app.use(express.static(path.join(__dirname, 'public'))); // <--- This line serves static files
@@ -24,30 +31,10 @@ app.use(express.static(path.join(__dirname, 'public'))); // <--- This line serve
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// Define the home route with pagination
-app.get('/', async (req, res) => {
-    let name = "Imran Ahmad";
-    const perPage = 3; // Number of reviews per page
-    const page = req.query.page || 1; // Default to page 1 if not provided
-
-    // Fetch reviews with pagination
-    const reviews = await User.find()
-        .skip((perPage * page) - perPage) // Skip the reviews of previous pages
-        .limit(perPage); // Limit the number of reviews to `perPage`
-
-    // Get the total count of reviews for pagination calculation
-    const count = await User.countDocuments();
-
-    // Calculate total pages
-    const totalPages = Math.ceil(count / perPage);
-
-    // Pass reviews, pagination data to the view
-    res.render('index', { name: name, reviews: reviews, currentPage: page, totalPages: totalPages });
-});
-
-// Use the reviews route for `/reviews` endpoint
-app.use('/reviews', reviewRoutes);
+app.use('/', reviewRoutes); // Use the review routes
 
 // Start the server
 app.listen(port, () => {

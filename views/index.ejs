@@ -28,7 +28,7 @@
                 <p>info@alramalaldaakina.com</p>
                 <p>Sat-Thu 07:30-04:30</p>
                 <p>
-                    <%= name%>
+                    Name
                 </p>
                 <div class="social">
                     <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -63,39 +63,64 @@
 
 
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
-                        Leave a Review
-                      </button>
+                <!-- Trigger Button -->
+<!-- Trigger Button -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+    Leave a Review
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <form action="/submit" method="POST" class="modal-content" novalidate>
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">Submit a Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="review">Review:</label>
+                    <textarea name="review" id="review" class="form-control" required></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+  
+  <!-- Optional JavaScript -->
+  <!-- <script>
+    $('#reviewModal').on('shown.bs.modal', function () {
+      $('input[name="name"]').trigger('focus');
+    });
+  </script> -->
+  
                       
-                    <!-- Modal -->
-                    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog"
-                        aria-labelledby="reviewModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <form action="/submit-review" method="POST" class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="reviewModalLabel">Submit Your Review</h5>
-                                    <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="reviewerName">Name:</label>
-                                        <input type="text" name="name" id="reviewerName" class="form-control"
-                                            required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="reviewText">Review:</label>
-                                        <textarea name="review" id="reviewText" class="form-control"
-                                            placeholder="Write your review..." required></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success">Submit Review</button>
-                                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+<script>
+    $('#reviewForm').on('submit', function (e) {
+      // Let the browser validate first
+      if (this.checkValidity()) {
+        $('#reviewModal').modal('hide');
+      }
+    });
+
+
+ 
+
+  </script>
+  
 
                     <i class="fa-solid fa-magnifying-glass" id="search"></i>
                 </nav>
@@ -259,34 +284,29 @@
         <div class="container">
             <h1>Customer Reviews</h1>
             <p>Hear what our clients have to say...</p>
-            <div class="cont">
-                <% reviews.forEach(review=> { %>
-                    <article class="quoteblock">
-                        <figure>
-                            <img class="customer" src="<%= review.image %>" alt="customer">
-                            <figcaption>
-                                <%= review.name %>
-                            </figcaption>
-                        </figure>
-                        <div class="quotetxt arrow">
-                            <p><img src="Images/blockquote1.png" alt="quote"></p>
-                            <p>
-                                <%= review.review %>
-                            </p>
-                        </div>
-
-                    </article>
-                    <% }) %>
-            </div>
-
-            <div class="pagination">
-                <% for(let i=1; i <=totalPages; i++) { %>
-                    <a href="/reviews?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>">
-                        <%= i %>
-                    </a>
-                    <% } %>
-            </div>
+           
+          
         </div>
+        <!-- ------------- -->
+
+        <div class="review-container">
+            <% reviews.forEach(function(review) { %>
+              <article class="quoteblock">
+                <figure>
+                    <img class="customer" src="/Images/cust2.png" alt="customer">
+                    <figcaption><%= review.name %></figcaption>
+                  </figure>
+                <div class="quotetxt arrow">
+                  <p><img src="/Images/blockquote2.png" alt="quote mark"></p>
+                  <p><%= review.review %></p>
+                </div>
+                
+              </article>
+            <% }); %>
+          </div>
+          
+          
+        <!-- ------------- -->
         <div class="contactUs">
             <div class="container">
                 <aside>
@@ -416,3 +436,13 @@
 
 </html>
 <p>0543691425 / </p>
+
+
+<script>
+    // Auto scroll slowly
+setInterval(() => {
+  const container = document.querySelector('.review-container');
+  container.scrollLeft += 1;
+}, 30); // Adjust speed
+
+</script>
