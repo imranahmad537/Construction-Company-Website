@@ -17,6 +17,7 @@ exports.submitReview = async (req, res) => {
     const { name, review } = req.body;
     await Review.create({ name, review });  // Save to MongoDB
     res.redirect('/');                      // Redirect to main page after submission
+    // res.render('index', { reviews: await Review.find(), successMessage: 'Review Submitted Successfully!' });
   } catch (error) {
     console.error("Error submitting review:", error);
     res.status(500).send("Server Error");
