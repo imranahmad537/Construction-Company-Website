@@ -70,7 +70,7 @@
 
                 <!-- Trigger Button -->
 <!-- Trigger Button -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
     Leave a Review
 </button>
 
@@ -102,6 +102,43 @@
             </div>
         </form>
     </div>
+</div> -->
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+    Leave a Review
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form action="/submit" method="POST" class="modal-content" novalidate>
+      <div class="modal-header">
+        <h5 class="modal-title" id="reviewModalLabel">Submit a Review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Name field -->
+        <div class="form-group">
+          <label for="name" class="col-form-label">Name:</label>
+          <input type="text" class="form-control" name="name" id="name" required>
+        </div>
+
+        <!-- Review field -->
+        <div class="form-group">
+          <label for="review" class="col-form-label">Review:</label>
+          <textarea class="form-control" name="review" id="review" required></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+      </div>
+    </form>
+  </div>
 </div>
 
   
@@ -292,6 +329,10 @@
                 <div class="quotetxt arrow">
                   <!-- <p><img src="/Images/blockquote2.png" alt="quote mark"></p> -->
                   <p><%= review.review %></p>
+                 <% if (review.review && review.review.length > 200) { %>
+
+                    <button class="read-more-btn">...</button>
+                  <% } %>
                 </div>
                 
               </article>
@@ -441,3 +482,13 @@ setInterval(() => {
 </script>
 
 
+<script>
+    document.querySelectorAll('.read-more-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const reviewText = button.previousElementSibling;
+        reviewText.classList.toggle('expanded');
+        button.textContent = reviewText.classList.contains('expanded') ? 'Read Less' : 'Read More';
+      });
+    });
+  </script>
+  

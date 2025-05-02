@@ -1013,3 +1013,24 @@ text-shadow:1px 1px #73757E;
 }
 
 /* END OF SHEET */
+
+
+
+
+
+
+
+
+.clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* limits to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .expanded {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+  
